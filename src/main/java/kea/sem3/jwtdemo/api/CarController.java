@@ -33,7 +33,9 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
-    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){return null;}
+    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
+        return carService.editCar(body,id);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable int id){}

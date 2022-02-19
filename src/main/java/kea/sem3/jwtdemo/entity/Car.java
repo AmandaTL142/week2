@@ -10,6 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -35,6 +37,14 @@ public class Car {
     }
 
     String brand;
+
+    //If problems related to transactional, change to EAGER
+    @OneToMany(mappedBy = "reservedCar")
+    Set<Reservation> reservations = new HashSet<>();
+
+    public void addReservation(Reservation res){
+        reservations.add(res);
+    }
 
     @Column(length = 60)
     String model;
